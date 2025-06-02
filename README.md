@@ -1,6 +1,6 @@
 # Nathan REUNGOAT
 
-## 3
+## 3. Exécuter un serveur web (apache: nginx, ...) dans un container docker
 
 a.  *Récupérer l'image sur le docker hub (httpd or nginx) (=> quelle commande)*  
  `docker pull nginx`  
@@ -41,7 +41,7 @@ d. *Relancez le même container sans l'option -v puis utilisez la commande cp po
 Successfully copied 2.05kB to Oui:/usr/share/nginx/html/index.html
 ```
 
-## 4
+## 4. Builder une image
 a. *A l'aide d'un Dockerfile, créer une image qui permet d'exécuter un serveur web (apache, nginx) (=> le Dockerfile)*  
 Voir le fichier `Dockerfile`.
 
@@ -99,3 +99,28 @@ L'avantage de la méthode `docker cp` est qu'elle permet de copier un fichier ou
 L'inconvénient de la méthode `docker cp` est qu'il faut à chaque fois copier le fichier dans le container, ce qui n'est pas pratique si on modifie le fichier régulièrement.
 
 L'avantage est que le fichier est copié dans le container, ce qui permet de le modifier dans le container sans affecter le système hôte.
+
+## 5. Utiliser une base de données dans un container docker
+
+a. Récupérer les images mysql (ou mariadb) et phpmyadmin depuis le Docker Hub
+`docker pull mysql:latest`  
+`docker pull phpmyadmin/phpmyadmin `
+
+b. *Exécuter 2 containers à partir des images
+Lancer le phpmyadmin (conteneurisé et publié sur un port) et ajoutez une table via l'interface*
+` docker network create mynetwork`  
+```
+ed48a21f0cd7566980dda201122d72ca83263d3f42affa9852ed483237ba9819
+```
+
+`docker run --name my-mysql --network mynetwork -e MYSQL_ROOT_PASSWORD=pass -e MYSQL_DATABASE=tpdb -d mysql`
+
+```
+1c57bf1e2c059c8a6b922326b420de248895911d50cfbd2d401123c49365d871
+```
+
+`docker run --name my-phpmyadmin --network mynetwork -e PMA_HOST=my-mysql -p 8081:80 -d phpmyadmin/phpmyadmin`
+
+```
+921c7886f6b8e7893f45f325ce3a99d025cc0f5bb66764309b26c1231321ee21
+```
