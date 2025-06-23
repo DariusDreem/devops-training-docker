@@ -124,3 +124,16 @@ ed48a21f0cd7566980dda201122d72ca83263d3f42affa9852ed483237ba9819
 ```
 921c7886f6b8e7893f45f325ce3a99d025cc0f5bb66764309b26c1231321ee21
 ```
+
+## 6 Utilisation de docker-compose.yml
+a. Allez lire la documentation de docker-compose et essayer de décrire à quoi sert cette commande VS la commande docker run
+
+` `docker-compose` est un outil qui permet de définir et de gérer des applications multi-conteneurs. Il utilise un fichier `docker-compose.yml` pour configurer les services, les réseaux et les volumes nécessaires à l'application. Contrairement à `docker run`, qui est utilisé pour exécuter un seul conteneur, `docker-compose` permet de lancer plusieurs conteneurs en une seule commande, facilitant ainsi la gestion des dépendances entre les services. `
+
+b. Quelle commande permet de lancer tous les containers du fichier yaml ? Quelle commande permet de les stopper ?
+
+` docker-compose up -d` pour lancer tous les conteneurs en arrière-plan.
+` docker-compose down` pour arrêter et supprimer tous les conteneurs, réseaux et volumes définis dans le fichier `docker-compose.yml`.
+
+c. Ecrivez un fichier docker-compose.yml pour servir votre base de données (mysql, mariadb, etc.) ET phpmyadmin
+
